@@ -1,4 +1,4 @@
-import { Color, OrthographicCamera, Scene, WebGLRenderer } from "three";
+import { Color, Group, OrthographicCamera, Scene, Vector3, WebGLRenderer } from "three";
 import { Map } from "./Map";
 import { Player } from "./Player";
 
@@ -13,8 +13,8 @@ export class RaycastGame {
     };
 
     constructor(public canvasId = "raycast") {
-        this.map = new Map();
-        this.player = new Player(0,0);
+        this.map = new Map(8, 8, this.resolution.height/8);
+        this.player = new Player(-this.resolution.width/4,0);
         this.initScene();
         this.control = this.control.bind(this);
     }
@@ -39,8 +39,10 @@ export class RaycastGame {
             renderer.render(scene, camera);
         };
         
-        //draw player
-        this.scene?.add(this.player.entity);
+        this.scene?.add(
+            this.map.entity,
+            this.player.entity
+        );
 
         renderScene();
     }

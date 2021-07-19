@@ -25,7 +25,7 @@ export class Player {
         
         const lgeometry = new BufferGeometry().setFromPoints([
             pos, 
-            pos.clone().setY(10*size)
+            pos.clone().setY(4*size)
         ]);
         const lmaterial = new LineBasicMaterial({ 
             color: 0xff0000,
