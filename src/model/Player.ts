@@ -5,16 +5,16 @@ import {
     LineBasicMaterial, 
     Points, 
     PointsMaterial, 
-    Vector2 
+    Vector2,
 } from "three";
 
 export class Player {
 
     public entity: Group;
 
-    constructor(size = 1) {
+    constructor(x = 0, y = 0, size = 8) {
         this.entity = new Group();
-        const pos = new Vector2(0,0);
+        const pos = new Vector2(0, 0);
         const pgeometry = new BufferGeometry().setFromPoints([
             pos
         ]);
@@ -35,6 +35,7 @@ export class Player {
             new Points(pgeometry, pmaterial),
             new Line(lgeometry, lmaterial)
         );
+        this.entity.position.set(x, y, 0);
     }
 
     rotate(angle: number) {

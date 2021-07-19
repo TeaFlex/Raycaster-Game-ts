@@ -15,7 +15,7 @@ export class RaycastGame {
 
     constructor(public canvasId = "raycast") {
         this.map = new Map();
-        this.player = new Player(this.scale);
+        this.player = new Player(10,0);
         this.initScene();
         this.control = this.control.bind(this);
     }
