@@ -11,11 +11,10 @@ export class RaycastGame {
         height: 512,
         width: 1024
     };
-    private scale = 10;
 
     constructor(public canvasId = "raycast") {
         this.map = new Map();
-        this.player = new Player(10,0);
+        this.player = new Player(0,0);
         this.initScene();
         this.control = this.control.bind(this);
     }
@@ -25,10 +24,10 @@ export class RaycastGame {
         const scene = this.scene;
         scene.background = new Color(0x555555);
         const camera = new OrthographicCamera(
-            (this.resolution.width/-2)/this.scale, 
-            (this.resolution.width/2)/this.scale,
-            (this.resolution.height/2)/this.scale,
-            (this.resolution.height/-2)/this.scale
+            this.resolution.width/-2, 
+            this.resolution.width/2,
+            this.resolution.height/2,
+            this.resolution.height/-2
         );
         const renderer = new WebGLRenderer();
         renderer.setSize(this.resolution.width, this.resolution.height);
@@ -51,16 +50,16 @@ export class RaycastGame {
 
         switch(key) {
             case "up":
-                this.player.move();
+                this.player.move(5);
                 break;
             case "down":
-                this.player.move(-1);
+                this.player.move(-5);
                 break;
             case "left":
-                this.player.rotate(0.1);
+                this.player.rotate(0.2);
                 break;
             case "right":
-                this.player.rotate(-0.1);
+                this.player.rotate(-0.2);
                 break;
         }
     }

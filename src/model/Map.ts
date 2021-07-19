@@ -9,8 +9,16 @@ export class Map {
         this.lengthX = length;
         this.heightY = height;
         this.size = this.getSize();
-        this.map = [];
-        this.map.fill(0, 0, this.size);
+        this.map = [
+            1,1,1,1,1,1,1,1,
+            1,0,0,1,0,0,0,1,
+            1,1,0,1,0,0,0,1,
+            1,0,0,0,0,1,1,1,
+            1,0,0,0,0,0,0,1,
+            1,0,0,0,0,0,0,1,
+            1,0,1,0,0,0,0,1,
+            1,1,1,1,1,1,1,1,
+        ];
     }
 
     setLengthX(length: number) {
