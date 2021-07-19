@@ -1,5 +1,5 @@
 {
-  "name": "vuethreets",
+  "name": "raycastergamets",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "register-service-worker": "^1.7.1",
+    "three": "^0.130.1",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/three": "^0.130.0",
     "@vue/cli-plugin-pwa": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
