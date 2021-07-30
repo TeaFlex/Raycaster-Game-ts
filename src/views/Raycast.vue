@@ -10,16 +10,19 @@ import { RaycastGame } from "@/model/RaycastGame";
     components: {}
 })
 export default class Raycast extends Vue {
+
+    raycast: RaycastGame;
+
     constructor(...args: any[]) {
         super(args);
-        const r = new RaycastGame();
-        const canvas = document.getElementById(r.canvasId);
+        this.raycast = new RaycastGame();
+        const canvas = document.getElementById(this.raycast.canvasId);
         if(!canvas)
-            document.body.appendChild(r.canvas!);
+            document.body.appendChild(this.raycast.canvas!);
         else
-            canvas.replaceWith(r.canvas!);
+            canvas.replaceWith(this.raycast.canvas!);
 
-        document.addEventListener("keydown", r.control);
+        document.addEventListener("keydown", this.raycast.control);
     }
 }
 </script>

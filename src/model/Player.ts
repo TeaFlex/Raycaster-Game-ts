@@ -53,6 +53,10 @@ export class Player {
 
     get pos() { return this.entity.position; }
 
+    get pos2D() { return new Vector2(this.pos.x, this.pos.y); }
+
+    get posMap() { return new Vector2(this.pos.x + 256, this.pos.y); }
+
     get angle() { 
         return this.entity.rotation.z + (Math.PI/2); 
     }

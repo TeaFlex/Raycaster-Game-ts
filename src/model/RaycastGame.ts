@@ -1,9 +1,9 @@
-import { Color, Group, OrthographicCamera, Scene, Vector3, WebGLRenderer } from "three";
+import { BufferGeometry, Color, OrthographicCamera, Points, PointsMaterial, Raycaster, Scene, Vector2, WebGLRenderer } from "three";
 import { Map } from "./Map";
 import { Player } from "./Player";
 
 export class RaycastGame {
-    private player: Player;
+    public player: Player;
     private map: Map;
     private scene?: Scene;
     public canvas?: HTMLCanvasElement;
@@ -36,15 +36,93 @@ export class RaycastGame {
         camera.position.setZ(1);
         const renderScene = () => {
             requestAnimationFrame(renderScene);
+            this.drawRays3D();
             renderer.render(scene, camera);
         };
         
         this.scene?.add(
-            this.map.entity,
+            //this.map.entity,
             this.player.entity
         );
-
+        
         renderScene();
+    }
+
+    private drawRays3D() {
+        let r, mx, my, mp, dof;
+        let rx, ry, ra, xo, yo;
+        ra = this.player.angle;
+
+        for(let r = 0; r<1; r++) {
+            dof = 0;
+            const aTan = -1/Math.tan(ra);
+
+            //Horizontal check
+            if(ra > Math.PI || ra < 0) { //down
+                ry = (Math.round(this.player.pos.y >> 6)<<6);
+                rx = (this.player.pos.y - ry)*aTan +this.player.pos.x;
+                yo = -64;
+                xo = -yo*aTan; 
+            }
+            else if(ra < Math.PI) { //up
+                ry = (Math.round(this.player.pos.y >> 6)<<6) + 64;
+                rx = (this.player.pos.y - ry)*aTan +this.player.pos.x;
+                yo = 64;
+                xo = -yo*aTan;
+            }
+            else if(ra == 0 || ra == Math.PI) { //left or right
+                rx = this.player.pos.x;
+                ry = this.player.pos.y;
+                dof = 8;
+            }
+
+            while(dof < 8) {
+                mx = Math.round(rx as number >> 6);
+                my = Math.round(ry as number >> 6);
+                mp = my*this.map.getLengthX()+mx;
+                if(mp<this.map.getSize() && this.map.map[mp] == 1) dof = 8;
+                else {
+                    (rx as number) += xo as number;
+                    (ry as number) += yo as number;
+                    dof++;
+                }
+            }
+
+            console.log(rx, ry);
+            
+
+            const geometry = new BufferGeometry().setFromPoints([
+                new Vector2(0, 0)
+            ]);
+            
+            const material = new PointsMaterial({
+                size: 5,
+                color: 0x00ff00
+            });
+
+            // const ray = new Line(geometry, material);
+            const point = new Points(geometry, material);
+            point.position.set((rx??0), ry??0, 0);
+            this.scene?.add(point);
+            // ray.position.set(256,0,0);
+            // //console.log(ray.position);
+            
+            // this.player.entity.add(ray);
+        }
+    }
+
+    private drawRays() {
+        const raycaster = new Raycaster(this.player.pos);
+
+        const intersects = raycaster.intersectObject(this.map.entity, true);
+        
+        for(let i = 0; i<this.scene!.children.length; i++) {
+            
+            if(intersects[i]) {
+                //(intersects[i].object as any).material.color.set(0x0000ff);
+            }
+            
+        }
     }
 
     control(e: KeyboardEvent) {

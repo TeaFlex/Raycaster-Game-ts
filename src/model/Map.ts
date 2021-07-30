@@ -15,12 +15,12 @@ export class Map {
         this.size = this.getSize();
         this.map = [
             1,1,1,1,1,1,1,1,
-            1,0,0,1,0,0,0,1,
-            1,1,0,1,0,0,0,1,
-            1,0,0,0,0,1,1,1,
             1,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,1,
-            1,0,1,0,0,0,0,1,
+            1,1,1,0,0,1,1,1,
+            1,1,0,0,0,0,1,1,
+            1,0,0,1,1,0,0,1,
+            1,0,1,1,1,1,0,1,
+            1,0,1,0,0,1,0,1,
             1,1,1,1,1,1,1,1,
         ];
 
@@ -40,7 +40,7 @@ export class Map {
             }
         }
 
-        this.entity.rotateX(Math.PI);
+        //this.entity.rotateX(Math.PI);
         this.entity.translateX(-((blockSize*this.lengthX)-(blockSize/2)));
         this.entity.translateY(-((blockSize*this.lengthX)/2-(blockSize/2)));
     }
