@@ -1,5 +1,6 @@
 <template>
   raycast !!!
+  <canvas></canvas>
 </template>
 
 <script lang="ts">
@@ -16,17 +17,14 @@ export default class Raycast extends Vue {
     constructor(...args: any[]) {
         super(args);
         this.raycast = new RaycastGame();
-        const canvas = document.getElementById(this.raycast.canvasId);
-        if(!canvas)
-            document.body.appendChild(this.raycast.canvas!);
-        else
-            canvas.replaceWith(this.raycast.canvas!);
-
-        document.addEventListener("keydown", this.raycast.control);
+        document.addEventListener('keydown', this.raycast.control);
     }
 }
 </script>
 
 <style>
-
+canvas {
+    display: block;
+    border: brown solid 1px;
+}
 </style>
