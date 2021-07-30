@@ -17,10 +17,10 @@ export class Player {
     }
 
     get position() {
-        return [
-            this.x,
-            this.y,
-            this.angle
-        ];
+        return {
+            x: this.x,
+            y: this.y,
+            angle: this.angle
+        };
     }
 }

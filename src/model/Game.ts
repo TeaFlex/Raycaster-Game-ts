@@ -1,11 +1,12 @@
 import { Map } from "./Map";
 import { Player } from "./Player";
+import { GameRenderer } from "./renderer/GameRenderer";
 
-export class RaycastGame {
+export class Game {
     public player: Player;
     public map: Map;
 
-    constructor() {
+    constructor(canvas: HTMLCanvasElement) {
         this.player = new Player();
         this.map = new Map([
             1,1,1,1,1,1,1,1,
@@ -17,6 +18,8 @@ export class RaycastGame {
             1,0,0,0,0,0,0,1,
             1,1,1,1,1,1,1,1,
         ]);
+
+        const gamerenderer = new GameRenderer(canvas);
 
         this.control =  this.control.bind(this);
     }
@@ -40,6 +43,5 @@ export class RaycastGame {
         }
         
         console.log(this.player.position);
-        
     }
 }

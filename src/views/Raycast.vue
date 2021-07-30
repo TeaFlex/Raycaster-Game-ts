@@ -1,22 +1,26 @@
 <template>
   raycast !!!
-  <canvas></canvas>
+  <canvas id="scene"></canvas>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { RaycastGame } from "@/model/RaycastGame";
+import { Game } from "@/model/Game";
 
 @Options({
     components: {}
 })
 export default class Raycast extends Vue {
 
-    raycast: RaycastGame;
+    raycast?: Game;
 
     constructor(...args: any[]) {
         super(args);
-        this.raycast = new RaycastGame();
+    }
+
+    mounted() {
+        const canvas = document.getElementById("scene") as HTMLCanvasElement;
+        this.raycast = new Game(canvas);
         document.addEventListener('keydown', this.raycast.control);
     }
 }
