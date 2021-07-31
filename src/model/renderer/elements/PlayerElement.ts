@@ -17,8 +17,8 @@ export class PlayerElement extends AElement {
         const lx = this.lsize * Math.cos(this.logic.angle);
         const ly = this.lsize * Math.sin(this.logic.angle);
     
+        //rays
         for(let i = 90; i>0; i--) {
-
             const rgeometry = new BufferGeometry().setFromPoints([
                 pos, 
                 new Vector2(lx, ly),
@@ -28,12 +28,14 @@ export class PlayerElement extends AElement {
             this.rays.push(new Line(rgeometry, rmaterial));
         }
 
+        //player point
         const pgeometry = new BufferGeometry().setFromPoints([pos]);
         const pmaterial = new PointsMaterial({
             size: this.psize,
             color: 0xffcc00,
         });
 
+        //sight line
         const lgeometry = new BufferGeometry().setFromPoints([
             pos, 
             new Vector2(lx, ly),
@@ -72,7 +74,7 @@ export class PlayerElement extends AElement {
             const ray = this.rays[i-1];
             const rayPoints = (ray.geometry.attributes as any).position.array;
 
-            const length = Math.round(Math.sqrt(((rayPoints[3]**2)+(rayPoints[4]**2))));
+            const length = Math.round(Math.sqrt(((rayPoints[3]**2)+(rayPoints[4]**2)))) + 100;
 
             rayPoints[3] = length * Math.cos(rangle);
             rayPoints[4] = length * Math.sin(rangle);
