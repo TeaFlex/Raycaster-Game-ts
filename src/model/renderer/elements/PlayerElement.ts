@@ -1,4 +1,4 @@
-import { Player } from "@/model/Player";
+import { Player } from "@/model/logic/Player";
 import { BufferGeometry, Line, LineBasicMaterial, Points, PointsMaterial, Vector2 } from "three";
 import { AElement } from "./AElement";
 

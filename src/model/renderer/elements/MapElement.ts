@@ -1,4 +1,4 @@
-import { Map } from "@/model/Map";
+import { Map } from "@/model/logic/Map";
 import { AElement } from "./AElement";
 
 export class MapElement extends AElement{

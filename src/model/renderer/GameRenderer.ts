@@ -1,6 +1,6 @@
 import { Camera, Color, Object3D, OrthographicCamera, Scene, WebGLRenderer } from "three";
-import { Map } from "../Map";
-import { Player } from "../Player";
+import { Map } from "../logic/Map";
+import { Player } from "../logic/Player";
 import { AElement } from "./elements/AElement";
 import { MapElement } from "./elements/MapElement";
 import { PlayerElement } from "./elements/PlayerElement";

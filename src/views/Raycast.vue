@@ -5,14 +5,14 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { Game } from "@/model/Game";
+import { RayCasterGame } from "@/model/RayCasterGame";
 
 @Options({
     components: {}
 })
 export default class Raycast extends Vue {
 
-    raycast?: Game;
+    raycast?: RayCasterGame;
 
     constructor(...args: any[]) {
         super(args);
@@ -20,7 +20,7 @@ export default class Raycast extends Vue {
 
     mounted() {
         const canvas = document.getElementById("scene") as HTMLCanvasElement;
-        this.raycast = new Game(canvas);
+        this.raycast = new RayCasterGame(canvas);
         document.addEventListener('keydown', this.raycast.control);
     }
 }

@@ -1,12 +1,11 @@
 import { Map } from "./Map";
 import { Player } from "./Player";
-import { GameRenderer } from "./renderer/GameRenderer";
 
 export class Game {
     public player: Player;
     public map: Map;
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor() {
         this.player = new Player();
         this.map = new Map([
             1,1,1,1,1,1,1,1,
@@ -18,8 +17,6 @@ export class Game {
             1,0,0,0,0,0,0,1,
             1,1,1,1,1,1,1,1,
         ]);
-
-        const gamerenderer = new GameRenderer(this.player, this.map, canvas);
 
         this.control =  this.control.bind(this);
     }
