@@ -19,7 +19,7 @@ export class Game {
             1,1,1,1,1,1,1,1,
         ]);
 
-        const gamerenderer = new GameRenderer(canvas);
+        const gamerenderer = new GameRenderer(this.player, this.map, canvas);
 
         this.control =  this.control.bind(this);
     }

@@ -4,11 +4,11 @@ export class Player {
     public angle = 0;
 
     move(step = 1) {
-        this.x += Math.sin(this.angle)*step;
-        this.y += Math.cos(this.angle)*step;
+        this.x += Math.cos(this.angle)*step;
+        this.y += Math.sin(this.angle)*step;
     }
 
-    rotate(angle = 0) {
+    rotate(angle = 0.1) {
         this.angle += angle;
         if(this.angle > 2*(Math.PI))
             this.angle = this.angle - (2*Math.PI);

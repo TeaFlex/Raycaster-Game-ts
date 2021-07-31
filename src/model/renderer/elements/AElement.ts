@@ -11,4 +11,6 @@ export abstract class AElement {
         for (const obj of objects)
             this.entity.add(obj);
     }
+
+    abstract drawElement(): void;
 }

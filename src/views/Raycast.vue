@@ -29,6 +29,6 @@ export default class Raycast extends Vue {
 <style>
 canvas {
     display: block;
-    border: brown solid 1px;
+    border: brown solid 2px;
 }
 </style>
