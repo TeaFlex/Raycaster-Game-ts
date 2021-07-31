@@ -18,7 +18,7 @@ export class PlayerElement extends AElement {
         const ly = this.lsize * Math.sin(this.logic.angle);
     
         //rays
-        for(let i = 90; i>0; i--) {
+        for(let i = 64; i>0; i--) {
             const rgeometry = new BufferGeometry().setFromPoints([
                 pos, 
                 new Vector2(lx, ly),

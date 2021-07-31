@@ -6,7 +6,7 @@ export class RayCasterGame {
     public gameRenderer: GameRenderer;
 
     constructor(canvas: HTMLCanvasElement) {
-        this.game = new Game();
+        this.game = new Game(undefined, 4*(-64));
         this.gameRenderer = new GameRenderer(this.game.player, this.game.map, canvas);
 
         this.control =  this.control.bind(this);
@@ -29,7 +29,5 @@ export class RayCasterGame {
                 this.game.player.rotate(-0.2);
                 break;
         }
-        
-        console.log(this.game.player.position);
     }
 }

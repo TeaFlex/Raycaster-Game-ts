@@ -1,10 +1,11 @@
 export class Map {
     private width: number;
     private heigth: number;
-    private content: number[];
 
-    constructor(content: number[]) {
-        this.content = content;
+    constructor(
+        private content: number[], 
+        private blockSize = 64
+    ) {
         this.width = Math.sqrt(content.length);
         this.heigth = this.width;
     }
@@ -19,5 +20,9 @@ export class Map {
 
     getContent() {
         return this.content;
+    }
+
+    getBlockSize() {
+        return this.blockSize;
     }
 }
