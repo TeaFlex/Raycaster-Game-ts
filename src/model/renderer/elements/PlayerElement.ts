@@ -28,19 +28,19 @@ export class PlayerElement extends AElement {
             this.rays.push(new Line(rgeometry, rmaterial));
         }
 
-        //player point
-        const pgeometry = new BufferGeometry().setFromPoints([pos]);
-        const pmaterial = new PointsMaterial({
-            size: this.psize,
-            color: 0xffcc00,
-        });
-
         //sight line
         const lgeometry = new BufferGeometry().setFromPoints([
             pos, 
             new Vector2(lx, ly),
         ]);
         const lmaterial = new LineBasicMaterial({ color: 0xff0000, });
+
+        //player point
+        const pgeometry = new BufferGeometry().setFromPoints([pos]);
+        const pmaterial = new PointsMaterial({
+            size: this.psize,
+            color: 0xffcc00,
+        });
 
         
 
@@ -81,5 +81,9 @@ export class PlayerElement extends AElement {
 
             (ray.geometry.attributes as any).position.needsUpdate = true;
         }
+    }
+
+    updateElement() {
+        this.drawElement();
     }
 }

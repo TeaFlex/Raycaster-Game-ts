@@ -16,4 +16,8 @@ export class Map {
             this.heigth = side;
         }
     }
+
+    getContent() {
+        return this.content;
+    }
 }

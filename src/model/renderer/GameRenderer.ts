@@ -7,9 +7,9 @@ import { PlayerElement } from "./elements/PlayerElement";
 
 export class GameRenderer {
 
-    private playerE: PlayerElement;
     private mapE: MapElement;
-
+    private playerE: PlayerElement;
+    
     private scene?: Scene;
     private camera?: Camera;
     private renderer?: WebGLRenderer;
@@ -53,16 +53,19 @@ export class GameRenderer {
         this.renderer.setSize(this.resolution.width, this.resolution.height);
 
         this.scene.add(
-            this.playerE.entity,
             this.mapE.entity,
+            this.playerE.entity,
         );
+
+        this.mapE.drawElement();
+        this.playerE.drawElement();
+        
     }
 
     private renderScene() {
         const render = () => {
             requestAnimationFrame(render);
-            this.playerE.drawElement();
-            this.mapE.drawElement();
+            this.playerE.updateElement();
             this.renderer!.render(this.scene!, this.camera!);
         };
         if(!this.isRendering) render();

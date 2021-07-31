@@ -13,4 +13,6 @@ export abstract class AElement {
     }
 
     abstract drawElement(): void;
+
+    updateElement() {}
 }

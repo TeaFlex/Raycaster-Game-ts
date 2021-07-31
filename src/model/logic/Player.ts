@@ -1,7 +1,11 @@
 export class Player {
-    public x = 0;
-    public y = 0;
+
     public angle = 0;
+
+    constructor(
+        public x = 0,
+        public y = 0,
+    ) {}
 
     move(step = 1) {
         this.x += Math.cos(this.angle)*step;
