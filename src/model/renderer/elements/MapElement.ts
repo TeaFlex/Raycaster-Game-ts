@@ -8,7 +8,7 @@ export class MapElement extends AElement{
     }
 
     drawElement() {
-        const blockSize = 64;
+        const blockSize = this.logic.getBlockSize();
 
         for(let y = 0; y<this.logic.getSide(); y++) {
             for(let x = 0; x<this.logic.getSide(); x++) {                
@@ -31,5 +31,9 @@ export class MapElement extends AElement{
         this.entity.position.setZ(-0.1);
 
         this.entity.rotateX(Math.PI);
+    }
+
+    getBlockSize() {
+        return this.logic.getBlockSize();
     }
 }

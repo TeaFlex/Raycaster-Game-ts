@@ -59,13 +59,13 @@ export class GameRenderer {
 
         this.mapE.drawElement();
         this.playerE.drawElement();
-        
     }
 
     private renderScene() {
         const render = () => {
             requestAnimationFrame(render);
             this.playerE.updateElement();
+            this.playerE.entity.position.x -= 4*this.mapE.getBlockSize();
             this.renderer!.render(this.scene!, this.camera!);
         };
         if(!this.isRendering) render();

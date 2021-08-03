@@ -6,7 +6,7 @@ export class RayCasterGame {
     public gameRenderer: GameRenderer;
 
     constructor(canvas: HTMLCanvasElement) {
-        this.game = new Game(undefined, 4*(-64));
+        this.game = new Game();
         this.gameRenderer = new GameRenderer(this.game.player, this.game.map, canvas);
 
         this.control =  this.control.bind(this);
@@ -17,16 +17,16 @@ export class RayCasterGame {
 
         switch(key) {
             case "up":
-                this.game.player.move(5);
+                this.game.movePlayer(5)
                 break;
             case "down":
-                this.game.player.move(-5);
+                this.game.movePlayer(-5);
                 break;
             case "left":
-                this.game.player.rotate(0.2);
+                this.game.rotatePlayer(0.2);
                 break;
             case "right":
-                this.game.player.rotate(-0.2);
+                this.game.rotatePlayer(-0.2);
                 break;
         }
     }
