@@ -19,18 +19,17 @@ export class MapElement extends AElement{
                     side: DoubleSide
                 });
                 const square = new Mesh(geometry, material);
-                square.position.set(x*blockSize, y*blockSize, 0);
+                square.position.set(x*blockSize, Math.abs(y-(this.logic.getSide()-1))*blockSize, 0);
                 this.entity.add(square);
             }
         }
 
+
         this.entity.position.setX(-((blockSize*this.logic.getSide())-(blockSize/2)));
         
-        this.entity.position.setY((blockSize*this.logic.getSide())/2-(blockSize/2));
+        this.entity.position.setY(-((blockSize*this.logic.getSide())-(9*blockSize)/2));
 
         this.entity.position.setZ(-0.1);
-
-        this.entity.rotateX(Math.PI);
     }
 
     getBlockSize() {
