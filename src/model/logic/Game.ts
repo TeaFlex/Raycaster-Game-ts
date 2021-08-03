@@ -11,9 +11,9 @@ export class Game {
             1,1,1,1,1,1,1,1,
             1,0,1,0,0,0,0,1,
             1,0,1,0,0,0,0,1,
-            1,0,1,0,0,0,0,1,
             1,0,0,0,0,0,0,1,
-            1,0,0,0,0,1,0,1,
+            1,0,0,0,0,0,0,1,
+            1,0,0,0,0,0,0,1,
             1,0,0,0,0,0,0,1,
             1,1,1,1,1,1,1,1,
         ]);
@@ -33,49 +33,47 @@ export class Game {
 
     calculateRays3D() {
         let dof, xo = 0, yo = 0, mx, my, mp;
-        let ra = this.player.angle;
+        let ra = 0;
         
-        for(let i = 1; i<=this.player.rayQuantity; i++) {
+
+        for(let i = 0; i<this.player.rayQuantity; i++) {
             dof = 0
             
-            const ray = this.player.rays[i-1];
-            ra = this.player.angle - ((Math.round(this.player.rayQuantity/2))*oneDegree) + (i*oneDegree);
+            const ray = this.player.rays[i];
+            ra = this.player.angle - ((Math.floor(this.player.rayQuantity/2))*oneDegree) + (i*oneDegree);
+            if(ra<0) ra += 2*Math.PI;
+            if(ra>2*Math.PI) ra -= 2*Math.PI;
             const sin = Math.sin(ra);
-            // ray.x = getXProjection(this.player.rayLength, ra);
-            // ray.y = getYProjection(this.player.rayLength, ra);
             
-            
-            if(ra > Math.PI) { ///bas
+            // horizontal check 
+            if(ra > Math.PI) { //down
                 ray.y = ((this.player.y>>6)<<6) -(64*(0**Math.abs(this.player.y))) - this.player.y;
                 ray.x = getXProjection(ray.y/sin, ra);
-                xo = this.player.x + ray.x;
                 yo = -64;
-                console.log("bas");
+                xo = getXProjection(yo/sin, ra);
             }
-            if(ra < Math.PI && ra != 0) { //haut
+            if(ra < Math.PI) { //up
                 ray.y = ((this.player.y>>6)<<6) + 64 - this.player.y;
                 ray.x = getXProjection(ray.y/sin, ra);
-                xo = this.player.x + ray.x;
                 yo = 64;
-                console.log("haut");
+                xo = getXProjection(yo/sin, ra);
             }
-            if(ra == 0 || ra == Math.PI) {
+            if(ra == 0 || ra == Math.PI) { //right or left
                 ray.x = this.player.x;
                 ray.y = this.player.y;
                 dof = 8;
             }
             
-            // console.log(this.player.position);
-            console.log(ray);
-            
-            
             
             while(dof < 8) {
-                mx=Math.round(ray.x >> 6);
-                my=Math.round(ray.y >> 6);
-                mp = my*this.map.getSide()+mx;
-                if((mp<this.map.getSide()**2) && (this.map.getContent()[mp] == 1)) dof = 8;
-                else {
+                mx=Math.round((ray.x + this.player.x) >> 6);
+                my=Math.round((ray.y + this.player.y) >> 6);
+                
+                
+                mp = my*this.map.getSide()+mx+(this.map.getSide()**2)/2;
+                //console.log(/*mx, my,*/ mp, this.map.getContent()[mp]);
+                //if((mp<this.map.getSide()**2) && (this.map.getContent()[mp] == 1)) dof = 8;
+                if(true) {
                     
                     ray.x+=xo;
                     ray.y+=yo;
