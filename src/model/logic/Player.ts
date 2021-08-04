@@ -1,10 +1,10 @@
 import { oneDegree, getXProjection, getYProjection } from '../utils/trigonometric';
 
 export class Player {
-    public angle = Math.PI/2;
+    public angle = 0;
     public rays: {x: number, y: number}[] = [];
     public readonly rayLength = 1000;
-    public readonly rayQuantity = 10;
+    public readonly rayQuantity = 90;
 
     constructor(
         public x = 0,
