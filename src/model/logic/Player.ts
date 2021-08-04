@@ -4,7 +4,7 @@ export class Player {
     public angle = 0;
     public rays: {x: number, y: number}[] = [];
     public readonly rayLength = 1000;
-    public readonly rayQuantity = 60;
+    public readonly rayQuantity = 64;
 
     constructor(
         public x = 0,

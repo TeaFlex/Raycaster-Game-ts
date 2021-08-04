@@ -1,10 +1,13 @@
 import { Game } from "@/model/logic/Game";
-import { Color, Mesh, MeshBasicMaterial, PlaneGeometry } from "three";
+import { Color, Group, Mesh, MeshBasicMaterial, PlaneGeometry } from "three";
 import { AElement } from "./AElement";
 
 export class CameraElement extends AElement {
-    constructor(private logic: Game) {
-        super();
+
+    private wallParts: Mesh[] = [];
+
+    constructor(logic: Game) {
+        super(logic);
 
         const w = this.logic.map.getBlockSize()*this.logic.map.getSide();
         const h = w*(9/16);
@@ -14,19 +17,27 @@ export class CameraElement extends AElement {
         //sky
         material.color = new Color(0x0066ff);
         const upbg = new Mesh(geometry, material.clone());
-        upbg.position.setX(w/2);
         upbg.position.setY(h/4);
 
         //ground
-        material.color = new Color(0x00ddaa);
+        material.color = new Color(0x00dd66);
         const downbg = new Mesh(geometry, material.clone());
-        downbg.position.setX(w/2);
         downbg.position.setY(-h/4);
 
+        const background = new Group();
+        background.add(upbg, downbg);
+        background.position.setX(w/2);
+
         this.addToElement(
-            upbg,
-            downbg,
+            background,
         );
+
+        const wPart = w/this.logic.distances.length;
+
+        for(let i=0; i<this.logic.distances.length; i++) {
+            const dist = this.logic.distances[i];
+
+        }
     }
 
     drawElement() {

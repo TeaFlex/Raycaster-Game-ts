@@ -1,9 +1,10 @@
+import { Game } from "@/model/logic/Game";
 import { Group, Object3D } from "three";
 
 export abstract class AElement {
     public entity: Group;
-
-    constructor() {
+    
+    constructor(protected logic: Game) {
         this.entity = new Group();
     }
 

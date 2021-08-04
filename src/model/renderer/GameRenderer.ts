@@ -27,8 +27,8 @@ export class GameRenderer {
         game: Game,
         canvas?: HTMLCanvasElement,
     ) {
-        this.mapE = new MapElement(game.map);
-        this.playerE = new PlayerElement(game.player);
+        this.mapE = new MapElement(game);
+        this.playerE = new PlayerElement(game);
         this.cameraE = new CameraElement(game);
 
         this.canvas = canvas;
@@ -70,6 +70,7 @@ export class GameRenderer {
             requestAnimationFrame(render);
             this.playerE.updateElement();
             this.playerE.entity.position.x -= 4*this.mapE.getBlockSize();
+            this.cameraE.updateElement();
             this.renderer!.render(this.scene!, this.camera!);
         };
         if(!this.isRendering) render();

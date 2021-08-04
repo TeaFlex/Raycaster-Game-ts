@@ -1,3 +1,4 @@
+import { Game } from "@/model/logic/Game";
 import { Player } from "@/model/logic/Player";
 import { getXProjection, getYProjection } from "@/model/utils/trigonometric";
 import { BufferGeometry, Line, LineBasicMaterial, Points, PointsMaterial, Vector2, Vector3 } from "three";
@@ -10,15 +11,17 @@ export class PlayerElement extends AElement {
     private rays: Line[] = [];
     private psize = 8;
     private lsize = 4*this.psize;
+    private player: Player;
 
-    constructor(private logic: Player) {
-        super();
+    constructor(logic: Game) {
+        super(logic);
+        this.player = this.logic.player;
         const pos =  new Vector2(0, 0);
-        const lx = getXProjection(this.lsize, this.logic.angle);
-        const ly = getYProjection(this.lsize, this.logic.angle);
+        const lx = getXProjection(this.lsize, this.player.angle);
+        const ly = getYProjection(this.lsize, this.player.angle);
         
         //rays
-        for(let i = this.logic.rays.length; i>0; i--) {
+        for(let i = this.player.rays.length; i>0; i--) {
             const rgeometry = new BufferGeometry().setFromPoints([
                 pos, 
                 new Vector2(lx, ly),
@@ -47,23 +50,26 @@ export class PlayerElement extends AElement {
         this.dotPlayer = new Points(pgeometry, pmaterial);
         this.sightDirection = new Line(lgeometry, lmaterial);
 
+        this.entity.position.set(this.player.x, this.player.y, 0);
+    }
+
+    drawElement() {
         this.addToElement(
             this.dotPlayer,
             this.sightDirection,
             ...this.rays
         );
-
-        this.entity.position.set(this.logic.x, this.logic.y, 0);
+        this.updateElement();
     }
 
-    drawElement() {
+    updateElement() {
         //Changing the position of the group.
-        this.entity.position.set(this.logic.x, this.logic.y, 0);
+        this.entity.position.set(this.player.x, this.player.y, 0);
         const sightPoints: number[] = (this.sightDirection.geometry.attributes as any).position.array;
         
         //coords of where the sight ray is pointing at.
-        sightPoints[3] = getXProjection(this.lsize, this.logic.angle);
-        sightPoints[4] = getYProjection(this.lsize, this.logic.angle);
+        sightPoints[3] = getXProjection(this.lsize, this.player.angle);
+        sightPoints[4] = getYProjection(this.lsize, this.player.angle);
         
         (this.sightDirection.geometry.attributes as any).position.needsUpdate = true;
 
@@ -71,14 +77,10 @@ export class PlayerElement extends AElement {
             const ray = this.rays[i-1];
             const rayPoints = (ray.geometry.attributes as any).position.array;
 
-            rayPoints[3] = this.logic.rays[i-1].x;
-            rayPoints[4] = this.logic.rays[i-1].y;
+            rayPoints[3] = this.player.rays[i-1].x;
+            rayPoints[4] = this.player.rays[i-1].y;
 
             (ray.geometry.attributes as any).position.needsUpdate = true;
         }
-    }
-
-    updateElement() {
-        this.drawElement();
     }
 }
