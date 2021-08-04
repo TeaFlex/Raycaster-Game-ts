@@ -14,7 +14,7 @@ export class Game {
             1,0,0,0,0,0,0,1,
             1,0,0,0,0,0,0,1,
             1,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,1,
+            1,0,0,1,0,0,0,1,
             1,1,1,1,1,1,1,1,
         ]);
         this.player = new Player(px, py);
@@ -64,17 +64,20 @@ export class Game {
                 dof = 8;
             }
             
-            
+            console.clear();
             while(dof < 8) {
-                mx=Math.round((ray.x + this.player.x) >> 6);
-                my=Math.round((ray.y + this.player.y) >> 6);
+                mx=((ray.x + this.player.x) >> 6) +4;
+                my=(-(ray.y + this.player.y) >> 6) +4;
+
+                if(ra < Math.PI) my--;
                 
+                console.log((-(ray.y + this.player.y) >> 6) + 4);
                 
-                mp = my*this.map.getSide()+mx+(this.map.getSide()**2)/2;
-                //console.log(/*mx, my,*/ mp, this.map.getContent()[mp]);
-                //if((mp<this.map.getSide()**2) && (this.map.getContent()[mp] == 1)) dof = 8;
-                if(true) {
-                    
+                mp = my*this.map.getSide()+mx;
+                if((mp<this.map.getSide()**2) && (this.map.getContent()[mp] != 0)){
+                    dof = 8;
+                }
+                else {
                     ray.x+=xo;
                     ray.y+=yo;
                     dof++;
