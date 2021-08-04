@@ -36,7 +36,7 @@ export class CameraElement extends AElement {
 
         const wPart = this.width/this.logic.data.length;
 
-        for(let i=0; i<this.logic.data.length; i++) {
+        for(let i=this.logic.data.length-1; i>=0; i--) {
             const dist = this.logic.data[i].distance;
 
             const pGeo = new PlaneGeometry(wPart, 10);
