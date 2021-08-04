@@ -63,6 +63,7 @@ export class GameRenderer {
 
         this.mapE.drawElement();
         this.playerE.drawElement();
+        this.cameraE.drawElement();
     }
 
     private renderScene() {

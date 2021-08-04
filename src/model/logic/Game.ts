@@ -5,7 +5,11 @@ import { Player } from "./Player";
 export class Game {
     public player: Player;
     public map: Map;
-    public distances: number[] = [];
+    public data: {
+        distance: number,
+        side: 'h'|'v',
+        angle: number
+    }[] = [];
 
     constructor(map?: number[], px?: number, py?: number) {
         this.map = new Map(map ?? [
@@ -129,16 +133,25 @@ export class Game {
                 }
             }
             
+            const data: any = {};
 
             if(disH < disV) {
                 ray.x = hx;
                 ray.y = hy;
-                this.distances[i] = disH;
+                this.data[i] = {
+                    distance: disH,
+                    side: 'h',
+                    angle: ra
+                };
             }
             else if(disH > disV) {
                 ray.x = vx;
                 ray.y = vy;
-                this.distances[i] = disV;
+                this.data[i] = {
+                    distance: disV,
+                    side: 'v',
+                    angle: ra
+                };
             }
         }
     }

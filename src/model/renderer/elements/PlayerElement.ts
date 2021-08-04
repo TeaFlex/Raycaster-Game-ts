@@ -45,8 +45,6 @@ export class PlayerElement extends AElement {
             color: 0xffcc00,
         });
 
-        
-
         this.dotPlayer = new Points(pgeometry, pmaterial);
         this.sightDirection = new Line(lgeometry, lmaterial);
 

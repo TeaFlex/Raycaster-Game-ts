@@ -29,7 +29,6 @@ export class MapElement extends AElement{
             }
         }
 
-
         this.entity.position.setX(-((blockSize*this.map.getSide())-(blockSize/2)));
         
         this.entity.position.setY(-((blockSize*this.map.getSide())-(9*blockSize)/2));
