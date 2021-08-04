@@ -9,8 +9,7 @@ export abstract class AElement {
     }
 
     addToElement(...objects: Object3D[]) {
-        for (const obj of objects)
-            this.entity.add(obj);
+        this.entity.add(...objects);
     }
 
     abstract drawElement(): void;
