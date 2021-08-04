@@ -5,6 +5,7 @@ import { Player } from "./Player";
 export class Game {
     public player: Player;
     public map: Map;
+    public distances: number[] = [];
 
     constructor(map?: number[], px?: number, py?: number) {
         this.map = new Map(map ?? [
@@ -36,7 +37,7 @@ export class Game {
         let ra = 0, rx = 0, ry = 0;
         let vx = this.player.x, vy = this.player.y;
         let hx = this.player.x, hy = this.player.y;
-        let disV = 10**6, disH = 10**6;
+        let disV = 10**6, disH = 10**6, disT = 0;
         
 
         for(let i = 0; i<this.player.rayQuantity; i++) {
@@ -127,14 +128,17 @@ export class Game {
                     dof++;
                 }
             }
+            
 
             if(disH < disV) {
                 ray.x = hx;
                 ray.y = hy;
+                this.distances[i] = disH;
             }
-            else {
+            else if(disH > disV) {
                 ray.x = vx;
                 ray.y = vy;
+                this.distances[i] = disV;
             }
         }
     }

@@ -1,7 +1,9 @@
 import { Camera, Color, Object3D, OrthographicCamera, Scene, WebGLRenderer } from "three";
+import { Game } from "../logic/Game";
 import { Map } from "../logic/Map";
 import { Player } from "../logic/Player";
 import { AElement } from "./elements/AElement";
+import { CameraElement } from "./elements/CameraElement";
 import { MapElement } from "./elements/MapElement";
 import { PlayerElement } from "./elements/PlayerElement";
 
@@ -9,6 +11,7 @@ export class GameRenderer {
 
     private mapE: MapElement;
     private playerE: PlayerElement;
+    private cameraE: CameraElement;
     
     private scene?: Scene;
     private camera?: Camera;
@@ -21,12 +24,12 @@ export class GameRenderer {
     };
 
     constructor(
-        player: Player,
-        map: Map,
+        game: Game,
         canvas?: HTMLCanvasElement,
     ) {
-        this.mapE = new MapElement(map);
-        this.playerE = new PlayerElement(player);
+        this.mapE = new MapElement(game.map);
+        this.playerE = new PlayerElement(game.player);
+        this.cameraE = new CameraElement(game);
 
         this.canvas = canvas;
         this.initScene();
@@ -55,6 +58,7 @@ export class GameRenderer {
         this.scene.add(
             this.mapE.entity,
             this.playerE.entity,
+            this.cameraE.entity,
         );
 
         this.mapE.drawElement();

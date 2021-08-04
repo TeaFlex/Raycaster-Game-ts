@@ -1,4 +1,4 @@
-export const oneDegree = 0.0174533;
+export const oneDegree = Math.PI/180;
 
 export function getXProjection(norm: number, theta: number) {
     return norm * Math.cos(theta);

@@ -7,7 +7,7 @@ export class RayCasterGame {
 
     constructor(canvas: HTMLCanvasElement) {
         this.game = new Game();
-        this.gameRenderer = new GameRenderer(this.game.player, this.game.map, canvas);
+        this.gameRenderer = new GameRenderer(this.game, canvas);
 
         this.control =  this.control.bind(this);
     }
