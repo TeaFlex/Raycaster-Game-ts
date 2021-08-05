@@ -1,6 +1,5 @@
 <template>
-  raycast !!!
-  <canvas id="scene"></canvas>
+    <canvas id="scene"></canvas>
 </template>
 
 <script lang="ts">
@@ -21,7 +20,27 @@ export default class Raycast extends Vue {
     mounted() {
         const canvas = document.getElementById("scene") as HTMLCanvasElement;
         this.raycast = new RayCasterGame(canvas);
-        document.addEventListener('keydown', this.raycast.control);
+        this.control = this.control.bind(this);
+        document.addEventListener('keydown', this.control);
+    }
+
+    control(e: KeyboardEvent) {
+        const key = e.code.replace(/^(Arrow)/gm, "").toLowerCase();
+
+        switch(key) {
+            case "up":
+                this.raycast?.game.movePlayer(10)
+                break;
+            case "down":
+                this.raycast?.game.movePlayer(-5);
+                break;
+            case "left":
+                this.raycast?.game.rotatePlayer(0.2);
+                break;
+            case "right":
+                this.raycast?.game.rotatePlayer(-0.2);
+                break;
+        }
     }
 }
 </script>
