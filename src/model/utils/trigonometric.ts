@@ -11,3 +11,11 @@ export function getYProjection(norm: number, theta: number) {
 export function getPythagore(a: number, b: number) {
     return Math.sqrt(a**2+b**2);
 }
+
+export function getNormalizedAngle(angle: number) {
+    if(angle > 2*(Math.PI))
+        angle -= (2*Math.PI);
+    if(angle < 0)
+        angle += (2*Math.PI);
+    return angle;
+}

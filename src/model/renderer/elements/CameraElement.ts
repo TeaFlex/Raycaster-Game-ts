@@ -1,5 +1,7 @@
 import { Game } from "@/model/logic/Game";
+import { getNormalizedAngle } from "@/model/utils/trigonometric";
 import { Color, Group, Mesh, MeshBasicMaterial, PlaneGeometry } from "three";
+import { colorArray } from "../enums/ColorDictionnary";
 import { AElement } from "./AElement";
 
 export class CameraElement extends AElement {
@@ -18,12 +20,12 @@ export class CameraElement extends AElement {
         const material = new MeshBasicMaterial();
         
         //sky
-        material.color = new Color(0x0066ff);
+        material.color = new Color(0x000000);
         const upbg = new Mesh(geometry, material.clone());
         upbg.position.setY(this.height/4);
 
         //ground
-        material.color = new Color(0x00dd66);
+        material.color = new Color(0xffffff);
         const downbg = new Mesh(geometry, material.clone());
         downbg.position.setY(-this.height/4);
 
@@ -61,8 +63,9 @@ export class CameraElement extends AElement {
             const part = this.wallParts[i];
             const data = this.logic.data[i];
             let dis = data.distance;
+            let ca = getNormalizedAngle(this.logic.player.angle - data.angle);
 
-            dis = dis*Math.cos(this.logic.player.angle - data.angle);
+            dis = dis*Math.cos(ca);
             
             let h = this.logic.map.getSide()*this.height/dis;
 
@@ -70,9 +73,15 @@ export class CameraElement extends AElement {
             
             part.scale.set(1, h, 0);
 
-            const color = (data.side === "h")? 0xff00ff: 0xff00bb;
-            (part.material as MeshBasicMaterial).color = new Color(color);
+            //const color = (data.side === "h")? 0xff00ff: 0xff00bb;
+            if(data.value-1 >= colorArray.length)
+                data.value = 1;
+            let color = colorArray[data.value-1][0];
+
+            if(data.side === "h")
+                color = colorArray[data.value-1][1];
             
+            (part.material as MeshBasicMaterial).color = new Color(color);
         }
     }
 }

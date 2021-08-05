@@ -1,4 +1,4 @@
-import { getPythagore, getXProjection, getYProjection, oneDegree } from "../utils/trigonometric";
+import { getNormalizedAngle, getPythagore, getXProjection, getYProjection, oneDegree } from "../utils/trigonometric";
 import { Map } from "./Map";
 import { Player } from "./Player";
 
@@ -8,18 +8,19 @@ export class Game {
     public data: {
         distance: number,
         side: 'h'|'v',
-        angle: number
+        angle: number,
+        value: number,
     }[] = [];
 
     constructor(map?: number[], px?: number, py?: number) {
         this.map = new Map(map ?? [
             1,1,1,1,1,1,1,1,
-            1,0,0,0,1,0,0,1,
             1,0,0,0,0,0,0,1,
-            1,1,0,0,0,0,0,1,
-            1,0,0,0,0,0,1,1,
             1,0,0,0,0,0,0,1,
-            1,0,0,1,0,0,0,1,
+            1,0,0,0,0,0,0,1,
+            1,0,0,0,0,0,0,1,
+            1,0,0,0,0,0,0,1,
+            1,0,0,2,3,0,0,1,
             1,1,1,1,1,1,1,1,
         ]);
         this.player = new Player(px, py);
@@ -41,18 +42,18 @@ export class Game {
         let ra = 0, rx = 0, ry = 0;
         let vx = this.player.x, vy = this.player.y;
         let hx = this.player.x, hy = this.player.y;
-        let disV = 10**6, disH = 10**6, disT = 0;
+        let disV = 10**6, disH = 10**6;
+        let valV = 0, valH = 0;
         
 
         for(let i = 0; i<this.player.rayQuantity; i++) {
-            dof = 0
             
             const ray = this.player.rays[i];
             ra = this.player.angle - ((Math.floor(this.player.rayQuantity/2))*oneDegree) + (i*oneDegree);
-            if(ra<0) ra += 2*Math.PI;
-            if(ra>2*Math.PI) ra -= 2*Math.PI;
+            ra = getNormalizedAngle(ra);
             
             // horizontal check 
+            dof = 0
             const sin = Math.sin(ra);
             if(ra > Math.PI) { //down
                 ry = ((this.player.y>>6)<<6) -(64*(0**Math.abs(this.player.y))) - this.player.y;
@@ -84,6 +85,7 @@ export class Game {
                     hx = rx;
                     hy = ry;
                     disH = getPythagore(hx, hy);
+                    valH = this.map.getContent()[mp];
                 }
                 else {
                     rx+=xo;
@@ -125,6 +127,7 @@ export class Game {
                     vx = rx;
                     vy = ry;
                     disV = getPythagore(vx, vy);
+                    valV = this.map.getContent()[mp];
                 }
                 else {
                     rx+=xo;
@@ -132,8 +135,6 @@ export class Game {
                     dof++;
                 }
             }
-            
-            const data: any = {};
 
             if(disH < disV) {
                 ray.x = hx;
@@ -141,7 +142,8 @@ export class Game {
                 this.data[i] = {
                     distance: disH,
                     side: 'h',
-                    angle: ra
+                    angle: ra,
+                    value: valH
                 };
             }
             else if(disH > disV) {
@@ -150,7 +152,8 @@ export class Game {
                 this.data[i] = {
                     distance: disV,
                     side: 'v',
-                    angle: ra
+                    angle: ra,
+                    value: valV
                 };
             }
         }

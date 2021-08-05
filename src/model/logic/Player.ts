@@ -1,4 +1,4 @@
-import { oneDegree, getXProjection, getYProjection } from '../utils/trigonometric';
+import { oneDegree, getXProjection, getYProjection, getNormalizedAngle } from '../utils/trigonometric';
 
 export class Player {
     public angle = 0;
@@ -27,17 +27,11 @@ export class Player {
 
     rotate(angle = 0.1) {
         this.angle += angle;
-        if(this.angle > 2*(Math.PI))
-            this.angle -= (2*Math.PI);
-        if(this.angle < 0)
-            this.angle += (2*Math.PI);
+        this.angle = getNormalizedAngle(this.angle);
+    }
 
-        // for(let i = 1; i<=this.rayQuantity; i++) {
-        //     const ray = this.rays[i-1];
-        //     const rangle = this.angle - ((Math.round(this.rayQuantity/2))*oneDegree) + (i*oneDegree);
-        //     ray.x = getXProjection(this.rayLength, rangle);
-        //     ray.y = getYProjection(this.rayLength, rangle);
-        // }
+    set degreeAngle(angle: number) {
+        this.angle = angle*oneDegree;
     }
 
     get position() {
