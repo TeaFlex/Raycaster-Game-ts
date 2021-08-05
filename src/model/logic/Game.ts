@@ -1,4 +1,10 @@
-import { getNormalizedAngle, getPythagore, getXProjection, getYProjection, oneDegree } from "../utils/trigonometric";
+import { 
+    getNormalizedAngle, 
+    getPythagore, 
+    getXProjection, 
+    getYProjection, 
+    oneDegree 
+} from "../utils/trigonometric";
 import { Map } from "./Map";
 import { Player } from "./Player";
 

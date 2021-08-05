@@ -1,8 +1,5 @@
-import { Camera, Color, Object3D, OrthographicCamera, Scene, WebGLRenderer } from "three";
+import { Camera, Color, OrthographicCamera, Scene, WebGLRenderer } from "three";
 import { Game } from "../logic/Game";
-import { Map } from "../logic/Map";
-import { Player } from "../logic/Player";
-import { AElement } from "./elements/AElement";
 import { CameraElement } from "./elements/CameraElement";
 import { MapElement } from "./elements/MapElement";
 import { PlayerElement } from "./elements/PlayerElement";
@@ -76,11 +73,6 @@ export class GameRenderer {
         };
         if(!this.isRendering) render();
         else console.log("Game is already rendering !");
-    }
-
-    addToScene(...elements: AElement[]) {
-        for (const el of elements) 
-            this.scene?.add(el.entity);
     }
 
     getCanvas() {

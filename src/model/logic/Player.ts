@@ -1,4 +1,9 @@
-import { oneDegree, getXProjection, getYProjection, getNormalizedAngle } from '../utils/trigonometric';
+import { 
+    oneDegree, 
+    getXProjection, 
+    getYProjection, 
+    getNormalizedAngle 
+} from '../utils/trigonometric';
 
 export class Player {
     public angle = 0;

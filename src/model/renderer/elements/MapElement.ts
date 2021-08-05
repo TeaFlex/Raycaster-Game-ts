@@ -1,6 +1,6 @@
 import { Game } from "@/model/logic/Game";
 import { Map } from "@/model/logic/Map";
-import { DoubleSide, Mesh, MeshBasicMaterial, PlaneGeometry } from "three";
+import { Mesh, MeshBasicMaterial, PlaneGeometry } from "three";
 import { colorArray } from "../enums/ColorDictionnary";
 import { AElement } from "./AElement";
 

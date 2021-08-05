@@ -1,7 +1,14 @@
 import { Game } from "@/model/logic/Game";
 import { Player } from "@/model/logic/Player";
 import { getXProjection, getYProjection } from "@/model/utils/trigonometric";
-import { BufferGeometry, Line, LineBasicMaterial, Points, PointsMaterial, Vector2, Vector3 } from "three";
+import { 
+    BufferGeometry, 
+    Line, 
+    LineBasicMaterial, 
+    Points, 
+    PointsMaterial,
+    Vector2 
+} from "three";
 import { AElement } from "./AElement";
 
 export class PlayerElement extends AElement {
