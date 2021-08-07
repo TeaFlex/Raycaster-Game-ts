@@ -20,13 +20,14 @@ import { Vue } from "vue-class-component";
 export default class Topbar extends Vue {
 
     infos = {
+        about: "Raycast",
         origin: "Raycast",
         github: "https://github.com/TeaFlex/Raycaster-Game-ts",
     };
 
     displayMobileMenu(e: TouchEvent | PointerEvent) {
         const el = document.querySelector("#topbar>nav")! as HTMLElement;
-        el.style.maxHeight = (!el.style.maxHeight)? "100px": "";
+        el.style.maxHeight = (!el.style.maxHeight)? "300px": "";
     }
 
     isUrl(input: string) {
@@ -42,7 +43,7 @@ export default class Topbar extends Vue {
     width: 100vw;
     height: auto;
     background-color: var(--darker-color);
-    color: var(--hightlight-color);
+    color: var(--highlight-color);
     align-items: center;
     user-select: none;
 }
@@ -73,7 +74,7 @@ export default class Topbar extends Vue {
 
 #topbar a {
     text-decoration: none;
-    color: white;
+    color: var(--highlight-color);
 }
 
 #topbar .button {
