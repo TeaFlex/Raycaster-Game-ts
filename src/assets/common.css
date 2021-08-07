@@ -1,0 +1,17 @@
+.flex, .center-flex {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.center-flex {
+    justify-content: center;
+    align-items: center;
+}
+
+.height-null {
+    max-height: 0;
+}
+
+.height-auto {
+    max-height: min-content;
+}

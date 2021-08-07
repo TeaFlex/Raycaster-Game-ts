@@ -9,6 +9,8 @@ export class RayCasterGame {
         this.game = new Game();
         this.gameRenderer = new GameRenderer(this.game, canvas);
 
+        canvas.style.height = "";
+        canvas.style.width = "";
         this.control =  this.control.bind(this);
     }
 

@@ -47,7 +47,13 @@ export default class Raycast extends Vue {
 
 <style>
 canvas {
+    width: 80vw;
     display: block;
-    border: brown solid 2px;
+}
+
+@media (max-width: 640px) {
+    canvas {
+        width: 100vw;
+    }
 }
 </style>
