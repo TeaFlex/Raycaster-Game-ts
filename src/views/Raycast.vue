@@ -1,5 +1,10 @@
 <template>
-    <canvas id="scene"></canvas>
+    <section class="content">
+        <canvas id="scene"></canvas>
+        <p>
+            To control the camera, you can use the arrow keys or the gyroscop of your device.
+        </p>
+    </section>
 </template>
 
 <script lang="ts">
@@ -46,9 +51,7 @@ export default class Raycast extends Vue {
 </script>
 
 <style>
-canvas {
-    width: 80vw;
-    display: block;
+#scene {
 }
 
 @media (max-width: 640px) {

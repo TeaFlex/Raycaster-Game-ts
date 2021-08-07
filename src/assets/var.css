@@ -1,5 +1,7 @@
 :root {
     --main-color: rgb(46, 46, 46);
-    --darker-color: rgb(43, 43, 43);
-    --darker-hover: rgb(34, 34, 34)
+    --darker-color: rgb(27, 27, 27);
+    --darker-hover: rgb(83, 83, 83);
+    --highlight-color: rgb(199, 199, 199);
+    --shadow-color: #121212;
 }

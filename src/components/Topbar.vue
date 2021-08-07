@@ -8,7 +8,8 @@
         <div class="hamburger" @click="displayMobileMenu" @touchleave="displayMobileMenu"></div>
         <nav class="flex">
             <div v-for="(value, key) in infos" :key="key" class="button center-flex">
-                <router-link :to="{name: value}">{{key}}</router-link>
+                <a v-if="isUrl(value)" v-bind:href="value" target="_blank">{{key}}</a>
+                <router-link v-else :to="{name: value}">{{key}}</router-link>
             </div>
         </nav>
     </header>
@@ -20,12 +21,16 @@ export default class Topbar extends Vue {
 
     infos = {
         origin: "Raycast",
-        github: "Raycast",
+        github: "https://github.com/TeaFlex/Raycaster-Game-ts",
     };
 
     displayMobileMenu(e: TouchEvent | PointerEvent) {
         const el = document.querySelector("#topbar>nav")! as HTMLElement;
         el.style.maxHeight = (!el.style.maxHeight)? "100px": "";
+    }
+
+    isUrl(input: string) {
+        return !!input.match(/^(http)s?:\/\//gm);
     }
 }
 </script>
@@ -35,9 +40,9 @@ export default class Topbar extends Vue {
 #topbar {
     position: sticky;
     width: 100vw;
-    height: 8vh;
+    height: auto;
     background-color: var(--darker-color);
-    color: white;
+    color: var(--hightlight-color);
     align-items: center;
     user-select: none;
 }
@@ -72,9 +77,8 @@ export default class Topbar extends Vue {
 }
 
 #topbar .button {
-    height: 100%;
     justify-content: center;
-    padding:  0 1em 0 1em;
+    padding: 1em;
 }
 
 #topbar .button:hover {

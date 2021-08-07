@@ -35,7 +35,6 @@ export class GameRenderer {
 
     private initScene() {
         this.scene = new Scene();
-        this.scene.background = new Color(0xa5a5a5);
         this.camera = new OrthographicCamera(
             this.resolution.width/-2, 
             this.resolution.width/2,
@@ -45,7 +44,7 @@ export class GameRenderer {
         this.camera.position.setZ(1);
 
         if(this.canvas)
-            this.renderer = new WebGLRenderer({ canvas: this.canvas });
+            this.renderer = new WebGLRenderer({ canvas: this.canvas, alpha: true });
         else {
             this.renderer = new WebGLRenderer();
             this.canvas = this.renderer.domElement;

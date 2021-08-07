@@ -25,7 +25,7 @@ export class CameraElement extends AElement {
         upbg.position.setY(this.height/4);
 
         //ground
-        material.color = new Color(0xffffff);
+        material.color = new Color(0xa5a5a5);
         const downbg = new Mesh(geometry, material.clone());
         downbg.position.setY(-this.height/4);
 
