@@ -79,6 +79,9 @@ export default class Topbar extends Vue {
 
 #topbar .button {
     justify-content: center;
+}
+
+#topbar .button a {
     padding: 1em;
 }
 

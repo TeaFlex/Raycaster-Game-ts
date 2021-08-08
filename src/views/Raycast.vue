@@ -2,24 +2,15 @@
     <section class="content" id="game">
         <canvas id="scene"></canvas>
         <div id="touchControl">
-            <button id="up">
+            <button 
+                v-for="(value, key) in buttons" 
+                :key="key"
+                v-bind:id="key" 
+                @click="control"
+                @touchleave="control"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
-                </svg>
-            </button>
-            <button id="left">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-                </svg>
-            </button>
-            <button id="right">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-            </button>
-            <button id="down">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" v-bind:d="value" />
                 </svg>
             </button>
             <div id="empty"></div> 
@@ -40,6 +31,12 @@ import { RayCasterGame } from "@/model/RayCasterGame";
 export default class Raycast extends Vue {
 
     raycast?: RayCasterGame;
+    buttons = {
+        up: "M7 11l5-5m0 0l5 5m-5-5v12",
+        left: "M11 17l-5-5m0 0l5-5m-5 5h12",
+        right: "M13 7l5 5m0 0l-5 5m5-5H6",
+        down: "M17 13l-5 5m0 0l-5-5m5 5V6",
+    }
 
     constructor(...args: any[]) {
         super(args);
@@ -50,14 +47,6 @@ export default class Raycast extends Vue {
         this.raycast = new RayCasterGame(canvas);
         this.control = this.control.bind(this);
         document.addEventListener('keydown', this.control);
-
-        const buttons = document.querySelectorAll("#touchControl>button") as NodeListOf<HTMLButtonElement>;
-        buttons.forEach(b => {
-            b.addEventListener("click", this.control);
-            b.addEventListener("touchleave", this.control);
-        });
-        console.log(buttons);
-        
     }
 
     control(e: Event) {
