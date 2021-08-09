@@ -26,7 +26,20 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
 main {
   margin: 1em 0 1em 0;
+}
+
+@media (max-width: 640px) {
+  main {
+    margin: 10em 0 1em 0;
+  }
 }
 </style>

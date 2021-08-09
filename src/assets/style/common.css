@@ -1,9 +1,9 @@
-.flex, .center-flex, .content {
+.flex, .center-flex, .content, .galery {
     display: flex;
     flex-flow: row wrap;
 }
 
-.center-flex, .content {
+.center-flex, .galery, .content {
     justify-content: center;
     align-items: center;
 }
@@ -21,13 +21,36 @@
     width: 100%;
 }
 
+.galery {
+    justify-content: space-around;
+}
+
+.galery > * {
+    width: 30%;
+    margin-top: 1em;
+}
+
+.galery > iframe {
+    width: 320px;
+    height: 180px;
+}
+
 p{
     display: block;
     padding: 1em;
+    margin: 0;
+}
+
+h2 {
+    margin-bottom: 0;
 }
 
 @media (max-width: 640px) {
     .content {
         width: 100vw;
+    }
+
+    .galery > * {
+        width: 100%;
     }
 }

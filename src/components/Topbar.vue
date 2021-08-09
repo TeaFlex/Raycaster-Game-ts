@@ -1,7 +1,7 @@
 <template>
     <header id="topbar" class="flex">
         <h1>
-            <router-link :to="{name: Raycast}">
+            <router-link :to="{name: 'Raycast'}">
                 Raycaster-Game-ts
             </router-link>
         </h1>
@@ -20,8 +20,7 @@ import { Vue } from "vue-class-component";
 export default class Topbar extends Vue {
 
     infos = {
-        about: "Raycast",
-        origin: "Raycast",
+        about: "About",
         github: "https://github.com/TeaFlex/Raycaster-Game-ts",
     };
 
@@ -39,8 +38,7 @@ export default class Topbar extends Vue {
 <style>
 
 #topbar {
-    position: sticky;
-    width: 100vw;
+    width: 100%;
     height: auto;
     background-color: var(--darker-color);
     color: var(--highlight-color);
@@ -93,6 +91,8 @@ export default class Topbar extends Vue {
 @media (max-width: 640px) {
 
     #topbar {
+        top: 0;
+        position: absolute;
         height: auto;
     }
 

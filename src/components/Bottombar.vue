@@ -18,9 +18,7 @@ export default class Bottombar extends Vue {
     text-align: center;
     padding: 3em 0 2em 0;
     color: var(--highlight-color);
-    width: 100vw;
-    position: static;
-    bottom: 0;
+    margin-top: auto;
 }
 
 #bottombar a {
