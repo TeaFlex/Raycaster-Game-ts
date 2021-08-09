@@ -49,8 +49,8 @@
         </p>
 
         <div class="galery">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/gYRrGTC7GtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/PC1RaETIx3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <youtube-iframe src="https://www.youtube.com/embed/gYRrGTC7GtA"/>
+            <youtube-iframe src="https://www.youtube.com/embed/PC1RaETIx3Y"/>
         </div>
 
         <h2>It's quite buggy, what the hell ?!</h2>
@@ -65,10 +65,12 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import clickableImg from "../components/ClickableImg.vue";
+import youtubeIframe from "../components/YoutubeIframe.vue";
 
 @Options({
   components: {
     clickableImg,
+    youtubeIframe
   }
 })
 export default class About extends Vue {

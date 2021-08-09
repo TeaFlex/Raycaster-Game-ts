@@ -22,6 +22,7 @@ export default class Topbar extends Vue {
     infos = {
         about: "About",
         github: "https://github.com/TeaFlex/Raycaster-Game-ts",
+        donate: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     };
 
     displayMobileMenu(e: TouchEvent | PointerEvent) {

@@ -1,6 +1,6 @@
 <template>
     <figure class="clickImg">
-        <img :src="src" :alt="alt">
+        <img :src="src" :alt="alt" class="shadow">
         <figcaption>
             <slot></slot>
         </figcaption>

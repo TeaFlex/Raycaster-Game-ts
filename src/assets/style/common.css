@@ -30,11 +30,6 @@
     margin-top: 1em;
 }
 
-.galery > iframe {
-    width: 320px;
-    height: 180px;
-}
-
 p{
     display: block;
     padding: 1em;
@@ -43,6 +38,10 @@ p{
 
 h2 {
     margin-bottom: 0;
+}
+
+.shadow, .content {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 640px) {
