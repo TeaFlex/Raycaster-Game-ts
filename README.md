@@ -1,5 +1,7 @@
 # Raycaster-Game-ts
 
+WebGL implementation of a raycasting engine with Typescript and Three.js.
+
 ## Project setup
 ```
 npm install
