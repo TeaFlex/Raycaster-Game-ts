@@ -25,13 +25,12 @@
     justify-content: space-around;
 }
 
-.galery > * {
+.galery > *:not(.ytVideo) {
     width: 30%;
     margin-top: 1em;
 }
 
 p{
-    display: block;
     padding: 1em;
     margin: 0;
 }
@@ -49,7 +48,7 @@ h2 {
         width: 100vw;
     }
 
-    .galery > * {
-        width: 100%;
+    .galery > *:not(.ytVideo) {
+        width: 60%;
     }
 }

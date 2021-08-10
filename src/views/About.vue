@@ -18,7 +18,7 @@
         <h2>How does it work ?</h2>
         <p>
             For short, the principle is to cast rays from a specific point (the player) and calculate
-            the intersection point with a plain block for each ray. When this point is found, it's then possibl, by calculating
+            the intersection point with a plain block for each ray. When this point is found, it's then possible, by calculating
             the distance between the player and this point, to know how far or close a wall is. 
         </p>
         <p>
@@ -49,8 +49,8 @@
         </p>
 
         <div class="galery">
-            <youtube-iframe src="https://www.youtube.com/embed/gYRrGTC7GtA">Tutorial to create a Raycaster from scratch</youtube-iframe>
-            <youtube-iframe src="https://www.youtube.com/embed/PC1RaETIx3Y">Tutorial to improve the Raycaster</youtube-iframe>
+            <youtube-iframe src="https://www.youtube.com/embed/gYRrGTC7GtA">Tutorial to create a Raycaster from scratch.</youtube-iframe>
+            <youtube-iframe src="https://www.youtube.com/embed/PC1RaETIx3Y">Tutorial to improve the previous Raycaster.</youtube-iframe>
         </div>
 
         <h2>It's quite buggy, what the hell ?!</h2>

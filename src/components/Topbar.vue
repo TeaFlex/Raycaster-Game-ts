@@ -20,6 +20,7 @@ import { Vue } from "vue-class-component";
 export default class Topbar extends Vue {
 
     infos = {
+        home: "Raycast",
         about: "About",
         github: "https://github.com/TeaFlex/Raycaster-Game-ts",
         donate: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -27,7 +28,9 @@ export default class Topbar extends Vue {
 
     displayMobileMenu(e: TouchEvent | PointerEvent) {
         const el = document.querySelector("#topbar>nav")! as HTMLElement;
-        el.style.maxHeight = (!el.style.maxHeight)? "300px": "";
+        //hooo one-liner, spooky~
+        const h = `${Object.keys(this.infos).length*(el.children.item(0) as HTMLButtonElement).offsetHeight}px`;
+        el.style.maxHeight = (!el.style.maxHeight)? h: "";
     }
 
     isUrl(input: string) {

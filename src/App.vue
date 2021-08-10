@@ -3,6 +3,7 @@
   <main class="center-flex">
     <router-view/>
   </main>
+  <img-show/>
   <bottombar/>
 </template>
 
@@ -10,11 +11,13 @@
 import { Options, Vue } from "vue-class-component";
 import topbar from "./components/Topbar.vue";
 import bottombar from "./components/Bottombar.vue";
+import imgShow from "./components/ImgShow.vue";
 
 @Options({
   components: {
     topbar,
     bottombar,
+    imgShow
   }
 })
 export default class App extends Vue {}

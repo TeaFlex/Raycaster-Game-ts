@@ -21,7 +21,7 @@ import { Vue, prop } from "vue-class-component";
 
 class Props {
     src = prop<string>({
-        //If you see this, go watch it !
+        //ahah funny video goes brrrrr
         default: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     });
 
@@ -43,19 +43,14 @@ div.ytVideo {
 }
 
 .ytVideo>iframe {
-    width: 100%;
-    height: 100%;
+    width: 336px;
+    height: 189px;
 }
 .ytVideo>.ytCaption {
+    width: 336px;
     margin-top: 0.5em;
     font-style: italic;
     text-align: center;
 }
 
-@media (max-width: 640px) {
-    .ytVideo>iframe {
-        width: 50%;
-        height: 100%;
-    }
-}
 </style>

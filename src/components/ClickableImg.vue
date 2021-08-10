@@ -1,6 +1,6 @@
 <template>
     <figure class="clickImg">
-        <img :src="src" :alt="alt" class="shadow">
+        <img :src="src" :alt="alt" class="shadow" @click="onClickImg" @touchleft="onClickImg">
         <figcaption>
             <slot></slot>
         </figcaption>
@@ -21,6 +21,14 @@ class Props {
 }
 
 export default class ClickableImg extends Vue.with(Props) {
+    onClickImg(e: PointerEvent) {
+        const show = document.getElementById("imgShow")!;
+        const img = show.children.item(1) as HTMLImageElement;
+        const target = e.target as HTMLImageElement;
+        img.src = target.src;
+        img.alt = target.alt;
+        show.style.display = "flex";
+    }
 }
 
 </script>
@@ -28,6 +36,7 @@ export default class ClickableImg extends Vue.with(Props) {
 <style>
 .clickImg>img{
     width: 100%;
+    cursor: pointer;
 }
 .clickImg>figcaption {
     text-align: center;
