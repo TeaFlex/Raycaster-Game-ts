@@ -1,5 +1,5 @@
 <template>
-    <div class="ytVideo">
+    <div class="ytVideo center-flex">
         <iframe 
             :width="width.toString()" 
             :height="height.toString()" 
@@ -10,9 +10,9 @@
             allowfullscreen 
             class="shadow">
         </iframe>
-        <span>
+        <div class="ytCaption">
             <slot></slot>
-        </span>
+        </div>
     </div>
 </template>
 
@@ -38,12 +38,24 @@ export default class YoutubeIframe extends Vue.with(Props) {}
 </script>
 
 <style>
-.ytVideo>iframe {
-    width: 80%;
-    height: 100%
+div.ytVideo {
+    flex-flow: column nowrap;
 }
-.ytVideo>span {
+
+.ytVideo>iframe {
+    width: 100%;
+    height: 100%;
+}
+.ytVideo>.ytCaption {
+    margin-top: 0.5em;
     font-style: italic;
     text-align: center;
+}
+
+@media (max-width: 640px) {
+    .ytVideo>iframe {
+        width: 50%;
+        height: 100%;
+    }
 }
 </style>

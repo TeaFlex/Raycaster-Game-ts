@@ -49,8 +49,8 @@
         </p>
 
         <div class="galery">
-            <youtube-iframe src="https://www.youtube.com/embed/gYRrGTC7GtA"/>
-            <youtube-iframe src="https://www.youtube.com/embed/PC1RaETIx3Y"/>
+            <youtube-iframe src="https://www.youtube.com/embed/gYRrGTC7GtA">Tutorial to create a Raycaster from scratch</youtube-iframe>
+            <youtube-iframe src="https://www.youtube.com/embed/PC1RaETIx3Y">Tutorial to improve the Raycaster</youtube-iframe>
         </div>
 
         <h2>It's quite buggy, what the hell ?!</h2>
